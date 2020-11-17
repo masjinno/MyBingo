@@ -1,0 +1,41 @@
+・辺の長さは5固定
+・中央はFreeセル
+・1列あたり15個の数字から5個選んでランダム配置
+・同じ数字は存在しない
+
+POST /bingo/v1/newgame
+	request:
+		{ "name":"ES4-3", "passcode":1234 }
+	response:
+		200 OK
+		409 Conflict．既に使われている名前。
+
+GET /bingo/v1/game?name=ES4-3
+	response:
+		200 OK
+			{ "numbers":[ 48, 37, ... , 5] }
+		404 NotFound．nameが見つからない。
+
+PUT /bingo/v1/newnumber
+	request:
+		{ "name":"ES4-3", "passcode":1234 }
+	response:
+		200 OK
+			{ "newnumber": 75 }
+		403 Forbidden．passcodeが不正。
+		404 NotFound．nameが見つからない。
+
+DELETE /bingo/v1/game?name=ES4-3&passcode=1234
+	response:
+		200 OK
+		403 Forbidden．passcodeが不正。
+		404 NotFound．nameが見つからない。
+
+カードのID化
+11-10-4-15-2-28-26-20-21-22-41-32-f-35-39-50-52-56-59-46-63-65-70-69-75
+MTEtMTAtNC0xNS0yLTI4LTI2LTIwLTIxLTIyLTQxLTMyLWYtMzUtMzktNTAtNTItNTYtNTktNDYtNjMtNjUtNzAtNjktNzU=
+
+DB
+name,numbers
+"ES4-3","48,37,68,5"
+

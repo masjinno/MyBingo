@@ -1,7 +1,23 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h3>ビンゴカード</h3>
 
-Welcome to your new app.
+<input id="GetCard" type="button" value="カードを取得" />
+<label>カードID</label>
+<input id="CardID" type="text" />
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h3>使い方</h3>
+<ul>
+	<li>
+		NameとPasscodeを入力して<label class="looklikebutton">ビンゴをセット</label>ボタンを押すとサーバー側でゲーム情報が生成されます。
+		<ul>
+			<li>Name: ビンゴ識別子。ビンゴに参加する人にはこのNameを伝えてください</li>
+			<li>Passcode: ビンゴ識別子に付随するパスコード。ビンゴを運営する人だけが知っていてください。</li>
+		</ul>
+	</li>
+	<li><label class="looklikebutton">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
+	<li><label class="looklikebutton">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
+	<li>あああ</li>
+</ul>
+
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@

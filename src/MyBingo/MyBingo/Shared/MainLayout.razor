@@ -1,13 +1,27 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
+@*<div class="sidebar">
     <NavMenu />
-</div>
+</div>*@
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
+	<div class="top-row px-4">
+		<label class="title">Bingo!🎱</label>
+		<div class="name">
+			<label>Name</label>
+			<input id="NameTextInput" type="text" placeholder="Name" />
+		</div>
+		<div class="passcode">
+			<label>Passcode</label>
+			<input id="PasscodePasswordInput" type="password" />
+		</div>
+		<div class="gamebuttons">
+			<input id="InitBingoButton" type="button" value="ビンゴをセット" />
+			<input id="DeleteBingoButton" type="button" value="ビンゴを削除" />
+			<input id="NextBingoNumberButton" type="button" value="ビンゴを回す" />
+		</div>
+		@*<a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>*@
+	</div>
 
     <div class="content px-4">
         @Body
