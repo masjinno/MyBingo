@@ -3,8 +3,9 @@
 <h3>ビンゴカード</h3>
 
 <input id="GetCard" type="button" value="カードを取得" />
-<label>カードID</label>
-<input id="CardID" type="text" />
+<label class="cardid">カードID</label>
+<input id="CardID" type="text"/>
+<input id="GetGame" type="button" value="ゲーム情報を取得" />
 
 <h3>使い方</h3>
 <ul>
@@ -17,7 +18,11 @@
 	</li>
 	<li><label class="looklikebutton">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
 	<li><label class="looklikebutton">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
-	<li>あああ</li>
+	<li>
+		<label class="looklikebutton">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
+		カードIDがセットされた状態で<label class="looklikebutton">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
+	</li>
+	<li><label class="looklikebutton">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
 </ul>
 
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@

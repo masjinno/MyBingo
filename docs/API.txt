@@ -16,7 +16,7 @@ GET /bingo/v1/game?name=ES4-3
 			{ "numbers":[ 48, 37, ... , 5] }
 		404 NotFoundDname‚ªŒ©‚Â‚©‚ç‚È‚¢B
 
-PUT /bingo/v1/newnumber
+POST /bingo/v1/newnumber
 	request:
 		{ "name":"ES4-3", "passcode":1234 }
 	response:
