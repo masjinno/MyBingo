@@ -1,28 +1,68 @@
 ﻿@page "/"
 
 <h3>ビンゴカード</h3>
-
-<input id="GetCard" type="button" value="カードを取得" />
-<label class="cardid">カードID</label>
-<input id="CardID" type="text"/>
-<input id="GetGame" type="button" value="ゲーム情報を取得" />
+<div class="bingo-card-operations">
+    <input id="GetCard" type="button" value="カードを取得" />
+    <div class="bingo-card-id-block">
+        <label>カードID</label>
+        <input id="CardID" type="text" class="bingo-card-id-text" />
+    </div>
+    <input id="GetGame" type="button" value="ゲーム情報を取得" />
+</div>
+<div class="bingo-card">
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell" id="num1-1" >1</div>
+        <div class="bingo-card-cell" id="num1-2" >1</div>
+        <div class="bingo-card-cell" id="num1-3" >1</div>
+        <div class="bingo-card-cell" id="num1-4" >1</div>
+        <div class="bingo-card-cell" id="num1-5" >1</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell" id="num2-1" >1</div>
+        <div class="bingo-card-cell" id="num2-2" >1</div>
+        <div class="bingo-card-cell" id="num2-3" >1</div>
+        <div class="bingo-card-cell" id="num2-4" >1</div>
+        <div class="bingo-card-cell" id="num2-5" >1</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell" id="num3-1" >1</div>
+        <div class="bingo-card-cell" id="num3-2" >1</div>
+        <div class="bingo-card-cell" id="num3-3" >1</div>
+        <div class="bingo-card-cell" id="num3-4" >1</div>
+        <div class="bingo-card-cell" id="num3-5" >1</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell" id="num4-1" >1</div>
+        <div class="bingo-card-cell" id="num4-2" >1</div>
+        <div class="bingo-card-cell" id="num4-3" >1</div>
+        <div class="bingo-card-cell" id="num4-4" >1</div>
+        <div class="bingo-card-cell" id="num4-5" >1</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell" id="num5-1" >1</div>
+        <div class="bingo-card-cell" id="num5-2" >1</div>
+        <div class="bingo-card-cell" id="num5-3" >1</div>
+        <div class="bingo-card-cell" id="num5-4" >1</div>
+        <div class="bingo-card-cell" id="num5-5" >1</div>
+    </div>
+</div>
 
 <h3>使い方</h3>
 <ul>
 	<li>
-		NameとPasscodeを入力して<label class="looklikebutton">ビンゴをセット</label>ボタンを押すとサーバー側でゲーム情報が生成されます。
+		NameとPasscodeを入力して<label class="look-like-button">ビンゴをセット</label>ボタンを押すとサーバー側でゲーム情報が生成されます。
 		<ul>
 			<li>Name: ビンゴ識別子。ビンゴに参加する人にはこのNameを伝えてください</li>
 			<li>Passcode: ビンゴ識別子に付随するパスコード。ビンゴを運営する人だけが知っていてください。</li>
 		</ul>
 	</li>
-	<li><label class="looklikebutton">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
-	<li><label class="looklikebutton">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
+	<li><label class="look-like-button">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
+	<li><label class="look-like-button">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
 	<li>
-		<label class="looklikebutton">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
-		カードIDがセットされた状態で<label class="looklikebutton">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
+		<label class="look-like-button">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
+		カードIDがセットされた状態で<label class="look-like-button">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
 	</li>
-	<li><label class="looklikebutton">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
+	<li><label class="look-like-button">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
 </ul>
 
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@
