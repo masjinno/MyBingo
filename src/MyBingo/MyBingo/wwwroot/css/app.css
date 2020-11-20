@@ -81,19 +81,29 @@ app {
 }
 
 .bingo-card-id-text {
-    width: 300px;
+    width: 900px;
 }
 
 .bingo-card {
-    margin: 20px;
-    padding-top: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 15px;
     padding-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-style: solid;
     border-width: 2px;
     border-color: black;
-    background-color: #ff9999;
+    background-color: #ffff88;
     align-content: center;
-    width: 350px; /* bingo-card-cell.width(=50px)×5 + bingo-card-cell.margin(10px×2×5) + α */
+    width: 410px; /* bingo-card-cell.width(=60px)×5 + bingo-card-cell.margin(10px×2×5) + α */
+}
+
+.bingo-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 46px;
 }
 
 .bingo-card-row {
@@ -103,17 +113,19 @@ app {
 
 .bingo-card-cell {
     margin: 10px;
+    padding-top: 5px;
     border-style: solid;
     border-width: 1px;
+    border-radius: 30px 30px 0px 0px;
     border-color: gray;
-    border-bottom-color: #ff9999;
+    border-bottom-color: #eeee77;
     background-color: white;
     font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 55px;
 }
 
 /*
