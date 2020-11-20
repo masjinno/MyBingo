@@ -1,180 +1,199 @@
 ﻿@page "/"
+@inject IJSRuntime JsRuntime;
 
 <h3>ビンゴカード</h3>
 <div class="bingo-card-operations">
-	<input id="GetCard" type="button" value="カードを取得" @onclick="GetBingoCard" />
-	<div class="bingo-card-id-block">
-		<label>カードID</label>
-		<input id="CardID" type="text" class="bingo-card-id-text"/><!-- @bind="bingoCardId"/>@bingoCardId -->
-	</div>
-	<input id="GetGame" type="button" value="ゲーム情報を取得" />
+    <input id="GetCard" type="button" value="カードを取得" @onclick="GetBingoCard" />
+    <div class="bingo-card-id-block">
+        <label>カードID</label>
+        <input id="CardID" type="text" class="bingo-card-id-text" @bind="bingoCardId" />
+    </div>
+    <input id="GetGame" type="button" value="ゲーム情報を取得" />
 </div>
 <div class="bingo-card">
-	<label class="bingo-card-title">ＢＩＮＧＯ</label>
-	<div class="bingo-card-row">
-		<div class="bingo-card-cell"><label @bind="numTable[0, 0]" />@numTable[0, 0]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[1, 0]" />@numTable[1, 0]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[2, 0]" />@numTable[2, 0]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[3, 0]" />@numTable[3, 0]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[4, 0]" />@numTable[4, 0]</div>
-	</div>
-	<div class="bingo-card-row">
-		<div class="bingo-card-cell"><label @bind="numTable[0, 1]" />@numTable[0, 1]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[1, 1]" />@numTable[1, 1]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[2, 1]" />@numTable[2, 1]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[3, 1]" />@numTable[3, 1]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[4, 1]" />@numTable[4, 1]</div>
-	</div>
-	<div class="bingo-card-row">
-		<div class="bingo-card-cell"><label @bind="numTable[0, 2]" />@numTable[0, 2]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[1, 2]" />@numTable[1, 2]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[2, 2]" />@numTable[2, 2]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[3, 2]" />@numTable[3, 2]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[4, 2]" />@numTable[4, 2]</div>
-	</div>
-	<div class="bingo-card-row">
-		<div class="bingo-card-cell"><label @bind="numTable[0, 3]" />@numTable[0, 3]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[1, 3]" />@numTable[1, 3]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[2, 3]" />@numTable[2, 3]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[3, 3]" />@numTable[3, 3]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[4, 3]" />@numTable[4, 3]</div>
-	</div>
-	<div class="bingo-card-row">
-		<div class="bingo-card-cell"><label @bind="numTable[0, 4]" />@numTable[0, 4]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[1, 4]" />@numTable[1, 4]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[2, 4]" />@numTable[2, 4]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[3, 4]" />@numTable[3, 4]</div>
-		<div class="bingo-card-cell"><label @bind="numTable[4, 4]" />@numTable[4, 4]</div>
-	</div>
+    <label class="bingo-card-title">ＢＩＮＧＯ</label>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell">@numTable[0, 0]</div>
+        <div class="bingo-card-cell">@numTable[1, 0]</div>
+        <div class="bingo-card-cell">@numTable[2, 0]</div>
+        <div class="bingo-card-cell">@numTable[3, 0]</div>
+        <div class="bingo-card-cell">@numTable[4, 0]</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell">@numTable[0, 1]</div>
+        <div class="bingo-card-cell">@numTable[1, 1]</div>
+        <div class="bingo-card-cell">@numTable[2, 1]</div>
+        <div class="bingo-card-cell">@numTable[3, 1]</div>
+        <div class="bingo-card-cell">@numTable[4, 1]</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell">@numTable[0, 2]</div>
+        <div class="bingo-card-cell">@numTable[1, 2]</div>
+        <div class="bingo-card-cell">@numTable[2, 2]</div>
+        <div class="bingo-card-cell">@numTable[3, 2]</div>
+        <div class="bingo-card-cell">@numTable[4, 2]</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell">@numTable[0, 3]</div>
+        <div class="bingo-card-cell">@numTable[1, 3]</div>
+        <div class="bingo-card-cell">@numTable[2, 3]</div>
+        <div class="bingo-card-cell">@numTable[3, 3]</div>
+        <div class="bingo-card-cell">@numTable[4, 3]</div>
+    </div>
+    <div class="bingo-card-row">
+        <div class="bingo-card-cell">@numTable[0, 4]</div>
+        <div class="bingo-card-cell">@numTable[1, 4]</div>
+        <div class="bingo-card-cell">@numTable[2, 4]</div>
+        <div class="bingo-card-cell">@numTable[3, 4]</div>
+        <div class="bingo-card-cell">@numTable[4, 4]</div>
+    </div>
 </div>
 
 <h3>使い方</h3>
 <ul>
-	<li>
-		NameとPasscodeを入力して<label class="look-like-button">ビンゴをセット</label>ボタンを押すとサーバー側でゲーム情報が生成されます。
-		<ul>
-			<li>Name: ビンゴ識別子。ビンゴに参加する人にはこのNameを伝えてください</li>
-			<li>Passcode: ビンゴ識別子に付随するパスコード。ビンゴを運営する人だけが知っていてください。</li>
-		</ul>
-	</li>
-	<li><label class="look-like-button">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
-	<li><label class="look-like-button">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
-	<li>
-		<label class="look-like-button">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
-		カードIDがセットされた状態で<label class="look-like-button">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
-	</li>
-	<li><label class="look-like-button">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
+    <li>
+        NameとPasscodeを入力して<label class="look-like-button">ビンゴをセット</label>ボタンを押すとサーバー側でゲーム情報が生成されます。
+        <ul>
+            <li>Name: ビンゴ識別子。ビンゴに参加する人にはこのNameを伝えてください</li>
+            <li>Passcode: ビンゴ識別子に付随するパスコード。ビンゴを運営する人だけが知っていてください。</li>
+        </ul>
+    </li>
+    <li><label class="look-like-button">ビンゴを削除</label>ボタンを押すと、ゲーム情報が削除されます。ゲーム終了時に押してください。ゲーム情報削除にはNameとPasscodeの入力が必要です。</li>
+    <li><label class="look-like-button">ビンゴを回す</label>ボタンを押すと、次の数字が排出されます。同様にNameとPassscodeが必要です。</li>
+    <li>
+        <label class="look-like-button">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
+        カードIDがセットされた状態で<label class="look-like-button">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
+    </li>
+    <li><label class="look-like-button">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
 </ul>
 
 @code {
-	// IDのデリミタ
-	private static readonly string DELIMITER = "-";
-	// 列数。奇数であること。
-	private static readonly int COLUMNS = 5;
-	// 行数。奇数であること。
-	private static readonly int ROWS = 5;
-	// 1列あたりでとりうる数字の範囲。
-	private static readonly int COLUMN_RANGE = 15;
-	// ビンゴカードの数字テーブル
-	private string[, ] numTable = new string[Index.COLUMNS, Index.ROWS];
-	// ビンゴカードのID
-	private string bingoCardId = "";
+    // IDのデリミタ
+    private static readonly string DELIMITER = "-";
+    // 列数。奇数であること。
+    private static readonly int COLUMNS = 5;
+    // 行数。奇数であること。
+    private static readonly int ROWS = 5;
+    // 1列あたりでとりうる数字の範囲。
+    private static readonly int COLUMN_RANGE = 15;
+    // ビンゴカードの数字テーブル
+    private string[,] numTable = new string[Index.COLUMNS, Index.ROWS];
+    // ビンゴカードのID
+    private string bingoCardId = "";
 
-	/// <summary>
-	/// カード取得メソッド
-	/// </summary>
-	private void GetBingoCard()
-	{
-		if (String.IsNullOrEmpty(this.bingoCardId))
-		{
-			this.CreateBingoCard();
-		}
-		else
-		{
-			this.CreateBingoCard(this.bingoCardId);
-		}
-	}
+    /// <summary>
+    /// カード取得メソッド
+    /// </summary>
+    private void GetBingoCard()
+    {
+        if (String.IsNullOrEmpty(this.bingoCardId))
+        {
+            this.CreateBingoCard();
+        }
+        else
+        {
+            this.CreateBingoCard(this.bingoCardId);
+        }
+    }
 
-	/// <summary>
-	/// カード生成メソッド
-	/// </summary>
-	private void CreateBingoCard()
-	{
-		StringBuilder sb = new StringBuilder();
-		Random rand = new Random();
-		for (int column = 0; column < Index.COLUMNS; column++)
-		{
-			for (int row = 0; row < Index.ROWS; row++)
-			{
-				if (row == Index.ROWS / 2 && column == Index.COLUMNS / 2)
-				{
-					numTable[column, row] = "free";
-				}
-				else
-				{
-					this.numTable[column, row] = ((rand.Next() % Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE).ToString();
-				}
-				if (row != 0 || column != 0)
-				{
-					sb.Append(Index.DELIMITER);
-				}
-				sb.Append(numTable[column, row]);
-			}
-		}
-		this.bingoCardId = this.EncodeToBase64(sb.ToString());
-	}
+    /// <summary>
+    /// カード生成メソッド
+    /// </summary>
+    private void CreateBingoCard()
+    {
+        StringBuilder sb = new StringBuilder();
+        Random rand = new Random();
+        try
+        {
+            for (int column = 0; column < Index.COLUMNS; column++)
+            {
+                for (int row = 0; row < Index.ROWS; row++)
+                {
+                    if (row == Index.ROWS / 2 && column == Index.COLUMNS / 2)
+                    {
+                        numTable[column, row] = "free";
+                    }
+                    else
+                    {
+                        int number;
+                        int r;
+                        do
+                        {
+                            number = (rand.Next() % Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE;
+                            for (r = 0; r < row; r++)
+                            {
+                                if (String.Equals(number.ToString(), this.numTable[column, r])) break;
+                            }
+                        } while (r < row);
+                        this.numTable[column, row] = number.ToString();
+                    }
+                    if (row != 0 || column != 0)
+                    {
+                        sb.Append(Index.DELIMITER);
+                    }
+                    sb.Append(numTable[column, row]);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Type type = ex.GetType();
+            string typeStr = type.ToString();
+            throw ex;
+        }
 
-	private void CreateBingoCard(string id)
-	{
-		string[] numbers = this.DecodeFromBase64(id).Split(Index.DELIMITER);
-		if (numbers.Length != Index.ROWS * Index.COLUMNS)
-		{
-			throw new ArgumentException("カードID");
-		}
-		// カードテーブルに落とし込む
-		for (int row = 0; row < Index.ROWS; row++)
-		{
-			for (int column = 0; column < Index.COLUMNS; column++)
-			{
-				numTable[column, row] = numbers[row * COLUMNS + column];
-			}
-		}
-	}
+        try
+        {
+            this.bingoCardId = this.EncodeToBase64(sb.ToString());
+        }
+        catch (Exception ex)
+        {
+            Type type = ex.GetType();
+            throw ex;
+        }
+    }
 
-	/// <summary>
-	/// Base64の文字列にエンコードする
-	/// </summary>
-	/// <param name="str">エンコード前の文字列</param>
-	/// <returns>Base64エンコードされた文字列</returns>
-	private string EncodeToBase64(string str)
-	{
-		Encoding enc = null;
-		try
-		{
-			enc = Encoding.GetEncoding("shift-jis");
-		}
-		catch(Exception ex)
-		{
-			throw ex;
-		}
-		if (enc != null)
-		{
-			return Convert.ToBase64String(enc.GetBytes(str));
-		}
-		else
-		{
-			return "";
-		}
-	}
+    private async void CreateBingoCard(string id)
+    {
+        try
+        {
+            string[] numbers = this.DecodeFromBase64(id).Split(Index.DELIMITER);
+            if (numbers.Length != Index.ROWS * Index.COLUMNS)
+            {
+                throw new ArgumentException("カードID");
+            }
+            // カードテーブルに落とし込む
+            for (int column = 0; column < Index.COLUMNS; column++)
+            {
+                for (int row = 0; row < Index.ROWS; row++)
+                {
+                    numTable[column, row] = numbers[column * ROWS + row];
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await JsRuntime.InvokeAsync<bool>("confirm", "カードIDが不正です。");
+        }
+    }
 
-	/// <summary>
-	/// Base64文字列をデコードする
-	/// </summary>
-	/// <param name="str">Base64形式の文字列</param>
-	/// <returns>Base64からデコードされた文字列</returns>
-	private string DecodeFromBase64(string str)
-	{
-		Encoding enc = Encoding.GetEncoding("shift-jis");
-		return enc.GetString(Convert.FromBase64String(str));
-	}
+    /// <summary>
+    /// Base64の文字列にエンコードする
+    /// </summary>
+    /// <param name="str">エンコード前の文字列</param>
+    /// <returns>Base64エンコードされた文字列</returns>
+    private string EncodeToBase64(string str)
+    {
+        return Convert.ToBase64String(Encoding.UTF8.GetBytes(str));
+    }
+
+    /// <summary>
+    /// Base64文字列をデコードする
+    /// </summary>
+    /// <param name="str">Base64形式の文字列</param>
+    /// <returns>Base64からデコードされた文字列</returns>
+    private string DecodeFromBase64(string str)
+    {
+        return Encoding.UTF8.GetString(Convert.FromBase64String(str));
+    }
 }
