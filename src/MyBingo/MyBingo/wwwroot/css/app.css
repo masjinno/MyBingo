@@ -127,7 +127,7 @@ app {
 }
 
 input[type=checkbox] {
-    display: none; /* チェックボックスを非表示にする */
+    display: none;
 }
 
 .bingo-card-cell {

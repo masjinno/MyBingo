@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# AzureƒfƒvƒƒC
+src/MyBingo/MyBingo/Properties/ServiceDependencies/MyBingo20201120192604 - Web Deploy/profile.arm.json

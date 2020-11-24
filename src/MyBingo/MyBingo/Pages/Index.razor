@@ -8,7 +8,10 @@
         <label>カードID</label>
         <input id="CardID" type="text" class="bingo-card-id-text" @bind="bingoCardId" />
     </div>
-    <input id="GetGame" type="button" value="ゲーム情報を取得" />
+    <div>
+        <input id="GetGame" type="button" value="ゲーム情報を取得" />
+        <label>@dischargedNumbers</label>
+    </div>
 </div>
 <div class="bingo-card">
     <label class="bingo-card-title">ＢＩＮＧＯ</label>
@@ -64,7 +67,7 @@
         <label class="look-like-button">カードを取得</label>ボタンを押すと、新しくカードが生成され、カードIDが表示されます。<br />
         カードIDがセットされた状態で<label class="look-like-button">カードを取得</label>ボタンを押すと、そのカード情報を取得できます。
     </li>
-    <li><label class="look-like-button">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してカードに反映されます。</li>
+    <li><label class="look-like-button">ゲーム情報を取得</label>ボタンを押すと、ゲーム情報を取得してこれまでに出た数字のリストを表示します。</li>
 </ul>
 
 @code {
@@ -80,6 +83,8 @@
     private string[,] numTable = new string[Index.COLUMNS, Index.ROWS];
     // ビンゴカードのID
     private string bingoCardId = "";
+    // 排出された番号のリスト
+    private string dischargedNumbers = "";
 
     /// <summary>
     /// カード取得メソッド
@@ -103,56 +108,43 @@
     {
         StringBuilder sb = new StringBuilder();
         Random rand = new Random();
-        try
+
+        for (int column = 0; column < Index.COLUMNS; column++)
         {
-            for (int column = 0; column < Index.COLUMNS; column++)
+            for (int row = 0; row < Index.ROWS; row++)
             {
-                for (int row = 0; row < Index.ROWS; row++)
+                if (row == Index.ROWS / 2 && column == Index.COLUMNS / 2)
                 {
-                    if (row == Index.ROWS / 2 && column == Index.COLUMNS / 2)
-                    {
-                        numTable[column, row] = "free";
-                    }
-                    else
-                    {
-                        int number;
-                        int r;
-                        do
-                        {
-                            number = (rand.Next() % Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE;
-                            for (r = 0; r < row; r++)
-                            {
-                                if (String.Equals(number.ToString(), this.numTable[column, r])) break;
-                            }
-                        } while (r < row);
-                        this.numTable[column, row] = number.ToString();
-                    }
-                    if (row != 0 || column != 0)
-                    {
-                        sb.Append(Index.DELIMITER);
-                    }
-                    sb.Append(numTable[column, row]);
+                    numTable[column, row] = "free";
                 }
+                else
+                {
+                    int number;
+                    int r;
+                    do
+                    {
+                        number = (rand.Next() % Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE;
+                        for (r = 0; r < row; r++)
+                        {
+                            if (String.Equals(number.ToString(), this.numTable[column, r])) break;
+                        }
+                    } while (r < row);
+                    this.numTable[column, row] = number.ToString();
+                }
+                if (row != 0 || column != 0)
+                {
+                    sb.Append(Index.DELIMITER);
+                }
+                sb.Append(numTable[column, row]);
             }
         }
-        catch (Exception ex)
-        {
-            Type type = ex.GetType();
-            string typeStr = type.ToString();
-            throw ex;
-        }
-
-        try
-        {
-            this.bingoCardId = this.EncodeToBase64(sb.ToString());
-        }
-        catch (Exception ex)
-        {
-            Type type = ex.GetType();
-            throw ex;
-        }
+        this.bingoCardId = this.EncodeToBase64(sb.ToString());
     }
 
+    /// <summary>
+    /// IDに相当するビンゴカードを生成する。
+    /// </summary>
+    /// <param name="id"></param>
     private async void CreateBingoCard(string id)
     {
         try
@@ -171,7 +163,7 @@
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await JsRuntime.InvokeAsync<bool>("confirm", "カードIDが不正です。");
         }
