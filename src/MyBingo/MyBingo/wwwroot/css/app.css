@@ -96,7 +96,7 @@ app {
     border-color: black;
     background-color: #ffff88;
     align-content: center;
-    width: 410px; /* bingo-card-cell.width(=60px)×5 + bingo-card-cell.margin(10px×2×5) + α */
+    width: 385px;
 }
 
 .bingo-card-title {
@@ -111,21 +111,40 @@ app {
     flex-direction: row;
 }
 
-.bingo-card-cell {
+.bingo-card-cell-frame {
     margin: 10px;
-    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
     border-style: solid;
     border-width: 1px;
-    border-radius: 30px 30px 0px 0px;
+    border-radius: 50% 50% 0% 0%;
     border-color: gray;
     border-bottom-color: #eeee77;
     background-color: white;
+    width: 50px;
+    height: 50px;
+}
+
+input[type=checkbox] {
+    display: none; /* チェックボックスを非表示にする */
+}
+
+.bingo-card-cell {
+    margin: 0px;
+    padding-top: 5px;
     font-size: 24px;
     display: flex;
+    border-radius: 50% 50% 0% 0%;
+    background-color: #ffffbb;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 55px;
+    width: 48px;
+    height: 48px;
+}
+
+input[type="checkbox"]:checked + label {
+    transform: translateY(24px) rotateX(65deg) translateY(-24px);
 }
 
 /*
