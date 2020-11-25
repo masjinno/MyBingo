@@ -123,7 +123,7 @@
                     int r;
                     do
                     {
-                        number = (rand.Next() % Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE;
+                        number = rand.Next(1, Index.COLUMN_RANGE + 1) + column * Index.COLUMN_RANGE;
                         for (r = 0; r < row; r++)
                         {
                             if (String.Equals(number.ToString(), this.numTable[column, r])) break;
@@ -138,7 +138,8 @@
                 sb.Append(numTable[column, row]);
             }
         }
-        this.bingoCardId = this.EncodeToBase64(sb.ToString());
+        string encoded = this.EncodeToBase64(sb.ToString());
+        this.bingoCardId = new string(encoded.Reverse().ToArray());
     }
 
     /// <summary>
@@ -149,7 +150,8 @@
     {
         try
         {
-            string[] numbers = this.DecodeFromBase64(id).Split(Index.DELIMITER);
+            string reversed = new string(id.Reverse().ToArray());
+            string[] numbers = this.DecodeFromBase64(reversed).Split(Index.DELIMITER);
             if (numbers.Length != Index.ROWS * Index.COLUMNS)
             {
                 throw new ArgumentException("カードID");
